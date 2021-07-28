@@ -1,13 +1,260 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    display: flex;
+    justify-content: center;
+    background-color: hsl(229, 27%, 15%);
 }
+
+section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1080px;
+}
+
+section h1 {
+    font-size: 36px;
+    text-align: center;
+    margin: 30px 0;
+    color: white;
+}
+
+.search-bar {
+    width: 640px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#search-field {
+    height: 28px;
+    flex-grow: 1;
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    height: 100%;
+    font-size: 15px;
+    border: 1px solid white;
+    outline: none;
+    padding-left: 3px;
+}
+
+.search-bar button {
+    font-size: 15px;
+    background-color: hsl(0, 0%, 92%);
+    border: 1px solid hsl(0, 0%, 92%);
+    width: 76px;
+    height: 28px;
+}
+
+.search-bar button:hover {
+    background-color: hsl(0, 0%, 80%);
+    border: 1px solid hsl(0, 0%, 80%);
+}
+
+.search-bar button:active {
+    background-color: hsl(0, 0%, 92%);
+    border: 1px solid hsl(0, 0%, 92%);
+}
+
+#search-results {
+    position: absolute;
+    display: block;
+    top: 28px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    color: white;
+    background-color: hsl(229, 20%, 43%);
+    opacity: 0.95;
+    margin-right: 80px;
+    transition: height 0.1s;
+    overflow: hidden;
+}
+
+#search-results.visible {
+    height: 290px;
+}
+
+#search-results option {
+    padding: 4px 3px;
+    font-size: 18px;
+}
+
+#search-results option:hover {
+    background-color: orange;
+    color: black;
+}
+
+#search-results.no-result {
+    height: 29px;
+}
+
+#search-results.no-result option:hover {
+    height: 29px;
+    color: hsl(0, 0%, 95%);
+    background-color: initial;
+}
+
+.watchlist {
+    margin-top: 40px;
+    list-style-type: none;
+    color: white;
+    list-style-position: inside;
+    padding: 0;
+}
+
+.watchlist :not(li) {
+    pointer-events: none;
+}
+
+.watchlist li {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    background-color: hsla(229, 27%, 10%, 90%);
+    width: 1080px;
+    height: 280px;
+}
+
+.watchlist li.hide {
+    display: none;
+}
+
+#placeholder {
+    background-color: transparent;
+    height: 0px;
+    width: 1080px;
+    transition: 1s;
+}
+
+#placeholder.grow {
+    height: 280px;
+}
+
+.watchlist h2 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.watchlist p {
+    font-size: 19px;
+    line-height: 1.3;
+}
+
+.movie-poster {
+    display: inline-block;
+    height: 280px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.movie-poster img {
+    object-fit: fill;
+    height: 100%;
+    width: 100%;
+}
+
+.movie-info {
+    padding: 5px 5px 5px 20px;
+}
+
+.movie-info table {
+    height: 100%;
+    width: 100%;
+}
+
+.movie-info td {
+    vertical-align: top;
+    height: 33%;
+}
+
+.movie-info td div {
+    margin-bottom: 15px;
+}
+
+.movie-synopsis {
+    margin-bottom: 15px;
+}
+
+.movie-info .actors, .movie-info .director {
+    margin-right: 6px;
+    font-size: 18px;
+    color: hsl(0, 0%, 85%);
+}
+
+.movie-info .actors em, .movie-info .director em {
+    font-style: normal;
+    color: white;
+}
+
+.movie-info .runtime, .advisory, .genre {
+    font-size: 15px;
+    padding: 2px 4px;
+    margin-right: 10px;
+}
+
+.movie-info .genre {
+    color: hsl(39, 100%, 45%);
+    border: 1px solid hsl(39, 100%, 45%);
+}
+
+.movie-info .runtime {
+    background-color: hsl(300, 15%, 35%);
+}
+
+.movie-info .advisory.G {
+    background-color: hsl(130, 27%, 53%);
+}
+
+.movie-info .advisory.P {
+    background-color: hsl(59, 52%, 56%);
+}
+
+.movie-info .advisory.M {
+    background-color: hsl(27, 50%, 41%);
+}
+
+.movie-info .advisory.R {
+    background-color: hsl(0, 43%, 40%);
+}
+
+.movie-info .advisory.N {
+    background-color: hsl(0, 0%, 0%);
+}
+
+
+.movie-info .rating {
+    vertical-align: middle;
+    text-align: center;
+    padding: 0 10px;
+    padding-bottom: 10px;
+}
+
+.movie-info .logo {
+    height: 26px;
+    width: 26px;
+    margin: 4px;
+}
+
+.movie-info h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.movie-info a {
+    color: white;
+    text-decoration: none;
+}
+
+.movie-info a:hover {
+    text-decoration: underline;
+}
+
